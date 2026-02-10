@@ -7,7 +7,7 @@ import { db } from '../services/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import AvatarSprite from '../components/AvatarSprite';
 
-const EMOTIONS = ['calm', 'tired', 'anxious', 'lonely', 'flat', 'okay', 'overwhelmed', 'neglected'];
+const EMOTIONS = ['soft cloud', 'sleepy kitten', 'fluttery tummy', 'lost balloon', 'pancake face', 'sunbeam', 'tangled yarn', 'thunderstorm, 'forgotten toy', 'sparkly pop'];
 
 export default function VirtualEmotionWorldScreen() {
   // List of avatars in the world, each with id and emotion
