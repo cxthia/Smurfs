@@ -1,0 +1,48 @@
+// VirtualEmotionWorldScreen.tsx
+// World A: 2D scrollable canvas, avatars grouped by emotion, anonymous interaction
+
+import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { db } from '../services/firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import AvatarSprite from '../components/AvatarSprite';
+
+const EMOTIONS = ['calm', 'tired', 'anxious', 'lonely', 'flat', 'okay', 'overwhelmed', 'neglected'];
+
+export default function VirtualEmotionWorldScreen() {
+  // List of avatars in the world, each with id and emotion
+  const [avatars, setAvatars] = useState<{ id: string; emotion: string }[]>([]);
+
+  useEffect(() => {
+    // Poll Firestore for avatars (mock logic)
+    const fetchAvatars = async () => {
+      // For demo, mock data
+      setAvatars([
+        { id: '1', emotion: 'calm' },
+        { id: '2', emotion: 'anxious' },
+        { id: '3', emotion: 'lonely' },
+        { id: '4', emotion: 'okay' },
+      ]);
+    };
+    fetchAvatars();
+  }, []);
+
+  return (
+    <ScrollView style={styles.container} horizontal>
+      {EMOTIONS.map((emotion) => (
+        <View key={emotion} style={styles.group}>
+          <Text style={styles.label}>{emotion}</Text>
+          {avatars.filter(a => a.emotion === emotion).map((a) => (
+            <AvatarSprite key={a.id} emotion={emotion} />
+          ))}
+        </View>
+      ))}
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16 },
+  group: { marginRight: 24, alignItems: 'center' },
+  label: { fontWeight: 'bold', marginBottom: 8 },
+});
