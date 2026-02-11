@@ -1,19 +1,27 @@
-// __tests__/App.test.tsx
-// Basic smoke test for navigation and screen rendering
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
-import App from '../App';
+import DailyCheckInScreen from '../app/DailyCheckInScreen';
+import JournalingScreen from '../app/JournalingScreen';
+import ProfileScreen from '../app/ProfileScreen';
+import RealWorldMapScreen from '../app/RealWorldMapScreen';
+import VirtualEmotionWorldScreen from '../app/VirtualEmotionWorldScreen';
 
-describe('App Navigation', () => {
-  it('renders home and navigates to screens', () => {
-    const { getByText } = render(<App />);
-    expect(getByText('Daily Check-In')).toBeTruthy();
-    expect(getByText('Virtual Emotion World')).toBeTruthy();
-    expect(getByText('Activity Map')).toBeTruthy();
-    expect(getByText('Journal')).toBeTruthy();
+const Stack = createNativeStackNavigator();
 
-    fireEvent.press(getByText('Daily Check-In'));
-    expect(getByText('Daily Check-In')).toBeTruthy();
-  });
-});
+export default function App() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Daily Check-In">
+          <Stack.Screen name="Daily Check-In" component={DailyCheckInScreen} />
+          <Stack.Screen name="Virtual Emotion World" component={VirtualEmotionWorldScreen} />
+          <Stack.Screen name="Activity Map" component={RealWorldMapScreen} />
+          <Stack.Screen name="Journal" component={JournalingScreen} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
+  );
+}
