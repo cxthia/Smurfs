@@ -1,12 +1,12 @@
 # Smurfs: Community Mental Wellbeing App
 
-A hackathon-ready Expo React Native app for low-stigma, emotionally supportive check-ins, journaling, and social connection. Built with TypeScript, Firebase, Lottie, Mapbox/Google Maps, OpenAI/Gemini API, and NativeWind/Tailwind for styling.
+A hackathon-ready Expo React Native app for low-stigma, emotionally supportive check-ins, journaling, and social connection. Built with TypeScript, Firebase, sprite-based avatars, OpenAI/Gemini API, and NativeWind/Tailwind for styling.
 
 ## Features
 
 - **Anonymous daily check-ins** (MCQs + optional text)
 - **Emotion classification** via LLM (OpenAI/Gemini)
-- **Emotion-representing avatar** (Lottie animations)
+- **Emotion-representing avatar** (sprite-based PNG assets)
 - **Virtual emotion world** (avatars grouped by emotion)
 - **Real-world map** (activity pins, join/host)
 - **Support group & activity suggestions** (LLM, location-aware)
@@ -19,17 +19,17 @@ A hackathon-ready Expo React Native app for low-stigma, emotionally supportive c
 - Firebase (Anonymous Auth, Firestore)
 - OpenAI/Gemini API (emotion classification, suggestions)
 - Lottie (avatar animations)
-- Mapbox/Google Maps (activity map)
+- Google Maps (activity map)
 - NativeWind/Tailwind (styling)
 - Jest + React Native Testing Library (testing)
 
 ## Folder Structure
 ```
 /app           # Screens
-/components    # Reusable UI components
+/components    # Reusable UI components (e.g., AvatarSprite)
 /services      # Firebase, AI, calendar, reward, etc.
-/hooks         # Custom hooks
-/types         # Shared types
+/__tests__     # Unit and component tests
+/assets        # Avatar sprites and other images
 ```
 
 ## Quick Start
@@ -54,7 +54,7 @@ A hackathon-ready Expo React Native app for low-stigma, emotionally supportive c
 - Add your tests in the `__tests__` folder or alongside components.
 
 ## Notes
-- Replace all placeholder API keys and Lottie assets with your own.
+- Replace all placeholder API keys and sprite assets with your own.
 - All AI and calendar logic is mockable for demo purposes.
 - No medical advice, diagnosis, or escalation is provided.
 
