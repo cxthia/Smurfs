@@ -7,33 +7,41 @@ import { db } from '../services/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import AvatarSprite from '../components/AvatarSprite';
 
-const EMOTIONS = ['calm', 'tired', 'anxious', 'lonely', 'flat', 'okay', 'overwhelmed', 'neglected'];
+const EMOTIONS = ['anxious', 'calm', 'confused', 'devious', 'ecstatic', 'happy', 'hungry', 'lonely', 'mad', 'motivated', 'sad', 'scared', 'tired'];
 
 export default function VirtualEmotionWorldScreen() {
   // List of avatars in the world, each with id and emotion
   const [avatars, setAvatars] = useState<{ id: string; emotion: string }[]>([]);
 
-  useEffect(() => {
-    // Poll Firestore for avatars (mock logic)
-    const fetchAvatars = async () => {
-      // For demo, mock data
-      setAvatars([
-        { id: '1', emotion: 'calm' },
-        { id: '2', emotion: 'anxious' },
-        { id: '3', emotion: 'lonely' },
-        { id: '4', emotion: 'okay' },
-      ]);
-    };
-    fetchAvatars();
-  }, []);
+useEffect(() => {
+  const fetchAvatars = async () => {
+    const q = query(collection(db, 'avatars'));
+    const snapshot = await getDocs(q);
+
+    interface Avatar {
+      id: string;
+      emotion: string;
+    }
+
+    const fetched: Avatar[] = snapshot.docs.map((doc: any) => ({
+      id: doc.id,
+      emotion: doc.data().emotion,
+    }));
+
+    setAvatars(fetched);
+  };
+
+  fetchAvatars();
+}, []);
+
 
   return (
     <ScrollView style={styles.container} horizontal>
       {EMOTIONS.map((emotion) => (
         <View key={emotion} style={styles.group}>
           <Text style={styles.label}>{emotion}</Text>
-          {avatars.filter(a => a.emotion === emotion).map((a) => (
-            <AvatarSprite key={a.id} emotion={emotion} />
+          {avatars.filter((a: any) => a.emotion === emotion).map((a: any) => (
+            <AvatarSprite key={a.id} emotion={emotion as any} />
           ))}
         </View>
       ))}
