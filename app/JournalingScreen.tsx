@@ -53,7 +53,7 @@ const [entries, setEntries] = useState<Entry[]>([]);
   const weeklySummary = entries.length > 0 ? 'Your week: Mostly reflective, some positive moments.' : 'No entries yet.';
 
   return (
-    <View style={{ flex: 1, padding: 24 }}>
+    <View style={{ flex: 1, padding: 24, backgroundColor: '#bdd9ff' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Private Journal</Text>
       <TextInput
         value={entry}
