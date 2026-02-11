@@ -1,23 +1,9 @@
-// Firebase configuration and initialization for Expo React Native app
-// This service abstracts all Firebase setup and exports initialized instances
-// Replace the placeholder config values with your Firebase project credentials
-
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: "AIzaSyApaSfvGYXM5dM36Z8sXvXwwC11c5G__Xk",
+  authDomain: "smurfs-3ba14.firebaseapp.com",
+  projectId: "smurfs-3ba14",
+  storageBucket: "smurfs-3ba14.firebasestorage.app",
+  messagingSenderId: "474619153320",
+  appId: "1:474619153320:web:1559c8c65a2d9fa447ab9d",
+  measurementId: "G-GZZ35D4VSC"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-export { app, auth, db };
